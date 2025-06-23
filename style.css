@@ -16,12 +16,11 @@ body {
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  padding-top: 100px; /* ←★ ヘッダーに被らないように上部余白追加 */
   max-width: 800px;
   width: 90%;
-  margin: 40px auto;
-  position: relative; /* ←★ 重なり順の制御のため明示 */
-  z-index: 1;
+  margin: 100px auto 40px; /* ← ヘッダーに被らないように上に余白 */
+  position: relative;
+  /* z-index: 1; ← 削除でOK */
 }
 
 /* --- ヘッダー・ナビ --- */
@@ -30,9 +29,11 @@ body {
   border-radius: 0 0 12px 12px;
   padding: 15px 30px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 1000; /* ←★ 被らないように高めに設定 */
+  left: 0;
+  right: 0;
+  z-index: 2000; /* ← 必ず前面に出るように */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,12 +110,13 @@ h2 {
   margin-bottom: 12px;
 }
 
-/* --- 段落とリスト --- */
+/* --- 段落 --- */
 p, li {
   line-height: 1.6;
   font-size: 1.1em;
 }
 
+/* --- リスト --- */
 ul {
   padding-left: 20px;
 }
@@ -124,6 +126,14 @@ img {
   max-width: 100%;
   border-radius: 8px;
   margin: 15px 0;
+}
+
+/* --- Twitter埋め込み用 --- */
+.twitter-section {
+  margin-top: 40px;
+}
+.twitter-timeline {
+  border-radius: 12px;
 }
 
 /* --- スマホ用レスポンシブ --- */
@@ -161,8 +171,7 @@ img {
 
   .container {
     width: 95%;
-    margin: 20px auto;
+    margin: 100px auto 20px; /* ← スマホ時もヘッダー対策で余白調整 */
     padding: 20px;
-    padding-top: 100px; /* ←★ ヘッダー対策をスマホにも反映 */
   }
 }
