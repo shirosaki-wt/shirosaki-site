@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ホーム - しろさきのサイト</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="nav-container">
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <nav id="nav">
+    <a href="index.html">ホーム</a>
+    <a href="works.html">作品一覧</a>
+    <a href="blog.html">ブログ</a>
+    <a href="links.html">各種リンク</a>
+  </nav>
+</header>
+
+<main class="container">
+  <h1>ようこそ！</h1>
+
+  <h2>自己紹介</h2>
+  <p>はじめまして。しろさきです。趣味は絵を描くこと、ゲーム実況を見漁ること、アニメを見ることなど。</p>
+  <p>このサイトでは、自分の作品をまとめたり、ブログと称して日記をアップしたりしていきます。</p>
+
+  <section class="twitter-section">
+  <h2>最新のポスト</h2>
+  <a class="twitter-timeline" data-lang="ja" data-height="600" href="https://twitter.com/shirosaki_wt?ref_src=twsrc%5Etfw">Tweets by shirosaki_wt</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </section>
+
+  <section id="latest-blogs">
+    <h2>最新のブログ</h2>
+    <ul id="blog-list"></ul>
+    <p><a class="more-link" href="blog.html">もっと見る</a></p>
+  </section>
+
+  <section id="latest-works">
+    <h2>最新の作品</h2>
+    <ul id="work-list"></ul>
+    <p><a class="more-link" href="works.html">もっと見る</a></p>
+  </section>
+</main>
+
+<footer>
+  <nav>
+    <a href="index.html">ホーム</a>
+    <a href="works.html">作品一覧</a>
+    <a href="blog.html">ブログ</a>
+    <a href="links.html">各種リンク</a>
+  </nav>
+  <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+    このサイトは、営利を目的とせず個人で運営しております。
+  </p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('nav').classList.toggle('show');
+  }
+
+  // 最新のブログ記事3件を表示
+  fetch('posts.json')
+    .then(response => response.json())
+    .then(posts => {
+      const list = document.getElementById('blog-list');
+      const latest = posts.slice().reverse().slice(0, 3);
+      latest.forEach(post => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="post.html?id=${post.id}">${post.title}</a>`;
+        list.appendChild(li);
+      });
+    });
+
+  // 最新の作品3件を表示
+  fetch('works.json')
+    .then(response => response.json())
+    .then(works => {
+      const list = document.getElementById('work-list');
+      const latest = works.slice().reverse().slice(0, 3);
+      latest.forEach(work => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="works.html#${work.id}">${work.title}</a>`;
+        list.appendChild(li);
+      });
+    });
+</script>
+
+</body>
+</html>
