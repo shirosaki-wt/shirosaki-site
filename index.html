@@ -58,10 +58,13 @@
 </footer>
 
 <script>
+  // メニュー開閉処理
   function toggleMenu() {
-    document.getElementById('nav').classList.toggle('show');
+    const nav = document.getElementById('nav');
+    nav.classList.toggle('show');
   }
-  // メニュー内リンクをクリックしたらメニュー閉じる処理を追加
+
+  // メニュー内リンクをクリックしたら閉じる
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('#nav a').forEach(link => {
       link.addEventListener('click', () => {
@@ -97,6 +100,7 @@
       });
     });
 </script>
+
 
 </body>
 </html>
