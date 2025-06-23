@@ -33,6 +33,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .hamburger {
@@ -141,6 +142,7 @@ img {
     border-radius: 0 0 12px 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     padding: 10px 0;
+    z-index: 999;
   }
 
   nav.show {
@@ -163,3 +165,4 @@ img {
     padding: 20px;
   }
 }
+
